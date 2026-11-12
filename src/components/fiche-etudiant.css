@@ -1,0 +1,73 @@
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+}
+
+/* container: el cartes jnb b3adhhom */
+.liste-etudiants {
+    display: flex;
+    flex-wrap: wrap;           /* ken ma ykafech el blasa, yrou7ou lel ligne eli ba3dha */
+    justify-content: center;
+    gap: 25px;
+    padding: 25px;
+    background: #faf6ff;
+}
+
+/* el carte */
+.etudiant-card {
+    width: 280px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* el boutons ta7t b3adhhom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.etudiant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #cac6ce;
+}
+
+h1 {
+    font-size: 25px;
+    color: #9e63ce;
+    margin: 12px 0;
+}
+
+p {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #554466;
+}
+
+button {
+    background: linear-gradient(135deg, #a56ac8, #783a9e);
+    color: white;
+    border: none;
+    padding: 11px 25px;
+    border-radius: 25px;
+    font-size: 13px;
+    margin-top: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(120, 50, 160, 0.25);
+    width: 100%;               /* kol bouton ya3mel kol el 3ordh, nafs el 7ajm */
+}
+
+button:hover {
+    background: #633080;
+}
