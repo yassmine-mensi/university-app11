@@ -3,12 +3,12 @@ import Studentcard from "./components/studentcard";
 import islemPhoto from "./assets/islem.jpej.jpeg";
 import walaPhoto from "./assets/wala.jpej.jpeg";
 import yassminePhoto from "./assets/yassmine.jpej.jpeg";
+import StudentForm from "./components/StudentFrom.jsx";
 
 function App() {
-  // 1) el liste w el recherche kollhom useState DAKHEL App
   const [etudiants, setEtudiants] = useState([
     {
-      id: 1, 
+      id: 1,
       np: "wala mensi",
       email: "walamensi@gmail.com",
       tel: "telephone",
@@ -19,7 +19,7 @@ function App() {
       image: walaPhoto,
     },
     {
-      id: 2, 
+      id: 2,
       np: "islem charrada",
       email: "islemcharrada@gmail.com",
       tel: "telephone",
@@ -30,7 +30,7 @@ function App() {
       image: islemPhoto,
     },
     {
-      id: 3, // <-- jdid
+      id: 3,
       np: "yassmine mensi",
       email: "yassminemensi5@gmail.com",
       tel: "telephone",
@@ -44,30 +44,29 @@ function App() {
 
   const [recherche, setRecherche] = useState("");
 
-  // 2) Ajouter
-  function ajouterEtudiant() {
-    const nouvelEtudiant = {
-      id: Date.now(),
-      np: "Yassine Ben Salem",
-      email: "yassine.bensalem@gmail.com",
-      tel: "+216 44 444 444",
-      fil: "Génie Logiciel et Systèmes d'Information",
-      anne: "2026/2027",
-      groupe: "GLSI_A",
-      ville: "Sfax",
-      image: yassminePhoto, // ay sora moujouda
+  // ✅ mapping: من form → شكل الـ card
+  function ajouterEtudiant(nouvelEtudiant) {
+    const etudiantFormate = {
+      id: nouvelEtudiant.id,
+      np: `${nouvelEtudiant.nom} ${nouvelEtudiant.prenom}`,
+      email: nouvelEtudiant.email,
+      tel: nouvelEtudiant.telephone,
+      fil: nouvelEtudiant.filiere,
+      anne: nouvelEtudiant.anneeEtude,
+      groupe: nouvelEtudiant.groupe,
+      ville: nouvelEtudiant.ville,
+      image: nouvelEtudiant.image,
     };
-    setEtudiants([...etudiants, nouvelEtudiant]);
+    setEtudiants((anciens) => [...anciens, etudiantFormate]);
   }
 
-  // 3) Supprimer
   function supprimerEtudiant(id) {
     setEtudiants((anciensEtudiants) =>
       anciensEtudiants.filter((etudiant) => etudiant.id !== id)
     );
   }
+  // ⬆️ احذف الكود الزايد اللي كان تحت هذه الدالة
 
-  // 4) Modifier (np = nom + prénom)
   function modifierEtudiant(id) {
     const nouveauNp = prompt("Saisir le nouveau nom et prénom : ");
     if (nouveauNp !== null && nouveauNp.trim() !== "") {
@@ -79,7 +78,6 @@ function App() {
     }
   }
 
-  // 5) Filtre par filière
   const etudiantsFiltres = etudiants.filter((etudiant) =>
     etudiant.fil.toLowerCase().includes(recherche.toLowerCase())
   );
@@ -96,7 +94,8 @@ function App() {
       />
 
       <div className="actions">
-        <button onClick={ajouterEtudiant}>+ Ajouter un étudiant</button>
+        {/* ✅ اسم الـ prop الصحيح */}
+        <StudentForm onAjouterEtudiant={ajouterEtudiant} />
       </div>
 
       <div className="liste-etudiants">
